@@ -16,7 +16,10 @@ insmap = {
     "lo": "127.0.0.1"
 }
 
-def detect(q: str):
+def ping(q: list[str]):
+    print(requests.get(f"http://{insmap[q[1]]}:{conf['appport']}/identify").json())
+
+def detect(q: list[str]):
     sock = socket(AF_INET, SOCK_DGRAM)
     sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     sock.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
@@ -27,8 +30,8 @@ def detect(q: str):
         sock.sendto(conf["challenge"].encode(), (conf["network_broadcast"], conf["discovport"]))
         print("Sent, awaiting response...")
         dat, sinfo = sock.recvfrom(1024)
-        if data.decode("UTF-8") == conf["resp"]:
-            ip = str(server[0])
+        if dat.decode("UTF-8") == conf["resp"]:
+            ip = str(sinfo[0])
             print(f"Confirmation recieved! IP: {ip}")
             tn = requests.get(f"http://{ip}:{conf['appport']}/identify").json()
             ta = input(f"Name of server: {tn}. Name [default]: ")
@@ -103,6 +106,14 @@ def down_single(q: list[str]):
 def up_single(q: list[str]):
     advance(["u", "1"])
 
+def create_script(q: list[str]):
+    f = open(q[2], "r")
+    requests.post(f"http://{insmap[q[1]]}:{conf['appport']}/createscript?file={q[2]}", data=f.read())
+    f.close()
+
+def load_script(q: list[str]):
+    requests.get(f"http://{insmap[q[1]]}:{conf['appport']}/loadscript?name={q[2]}")
+
 fnmap = {
     "q": ops_q,
     "quit": ops_q,
@@ -122,7 +133,10 @@ fnmap = {
     "mt": adv_continuous,
     "z": zero,
     "1": down_single,
-    "2": up_single
+    "2": up_single,
+    "ping": ping,
+    "csc": create_script,
+    "lsc": load_script
 }
 
 while fla:
