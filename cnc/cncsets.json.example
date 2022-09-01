@@ -1,0 +1,8 @@
+{
+	"network_broadcast": "10.35.255.255",
+	"challenge": "opr_discov_udp_conf_basic",
+	"resp": "opr_discov_udp_conf_success",
+	"timeout": 5,
+	"discovport": 61910,
+	"appport": 61911
+}

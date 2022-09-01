@@ -1,0 +1,6 @@
+{
+	"host": "",
+	"port": 61910,
+	"trigger": "opr_discov_udp_conf_basic",
+	"response": "opr_discov_udp_conf_success"
+}

@@ -1,0 +1,14 @@
+{
+	"mode": 0,
+	"scriptfile": "script.txt.sample",
+	"lpos": 0,
+	"fontfile": "Sono-Bold.ttf",
+	"fontsize": 48,
+	"dim_x": 1280,
+	"dimA_x": 640,
+	"dim_y": 720,
+	"dimA_y": 360,
+	"inset": 30,
+	"fps": 30,
+	"fullscreen": true
+}
