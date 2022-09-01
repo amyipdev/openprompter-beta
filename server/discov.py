@@ -18,6 +18,7 @@ def main():
     # keep going - no need to reset to redeliver
     while True:
         d, a = sck.recvfrom(1024)
+        print(a)
         d = str(d.decode('UTF-8')).strip()
         if d == conf["trigger"]:
             sent = sck.sendto(conf["response"].encode(), a)
