@@ -5,6 +5,7 @@ import cv2
 import sys
 import json
 import os.path
+import time
 
 RGB_BLACK = (0, 0, 0)
 RGB_WHITE = (0xff, 0xff, 0xff)
@@ -43,6 +44,7 @@ while True:
     if lmd != retime():
         lmd = retime()
         conf = reconf()
+        time.sleep(0.1 / conf["fps"])
         with open(conf["scriptfile"], "r") as f:
             script = f.read().splitlines()
             f.close()

@@ -108,7 +108,7 @@ def up_single(q: list[str]):
 
 def create_script(q: list[str]):
     f = open(q[2], "r")
-    requests.post(f"http://{insmap[q[1]]}:{conf['appport']}/createscript?file={q[2]}", data=f.read())
+    requests.post(f"http://{insmap[q[1]]}:{conf['appport']}/createscript?file={q[2]}", data=f.read().encode("utf-8"))
     f.close()
 
 def load_script(q: list[str]):
@@ -144,5 +144,7 @@ while fla:
     try:
         a = q.split()
         fnmap[a[0]](a)
+    except KeyboardInterrupt:
+        print("stopped the current op. you may want to Z")
     except Exception as e:
         print("An error occurred:", e)
