@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=OpenPrompter
+Comment=OpenPrompter teleprompter client
+Path=~/openprompter-beta/server/
+Exec=~/openprompter-beta/server/launch.sh
+Terminal=true
